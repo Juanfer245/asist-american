@@ -26,30 +26,22 @@ header('location:login/login.php');
     include "../modelo/conexion.php";
     include "../controlador/controlador_eliminar_asistencia.php";
     $sql=$conexion->query(" SELECT
-	asistencia.*, 
-	asistencia.id_asistencia, 
-	asistencia.id_empleado, 
-	asistencia.entrada, 
-	asistencia.salida, 
-	empleado.*, 
-	empleado.id_empleado, 
-	empleado.nombre as 'nom_empleado', 
-	empleado.apellido, 
-	empleado.dni, 
-	empleado.cargo, 
-	cargo.*, 
-	cargo.id_cargo, 
-	cargo.nombre as 'nom_cargo'
+asistencia.id_asistencia,
+asistencia.id_empleado,
+asistencia.entrada,
+asistencia.salida,
+empleado.id_empleado,
+empleado.nombre as 'nom_empleado',
+empleado.apellido,
+empleado.dni,
+empleado.cargo,
+cargo.id_cargo,
+cargo.nom_cargo
 FROM
-	asistencia
-	INNER JOIN
-	empleado
-	ON 
-		asistencia.id_empleado = empleado.id_empleado
-	INNER JOIN
-	cargo
-	ON 
-		empleado.cargo = cargo.id_cargo ");
+asistencia
+INNER JOIN empleado ON asistencia.id_empleado = empleado.id_empleado
+INNER JOIN cargo ON empleado.cargo = cargo.id_cargo
+ ");
 
     ?>
 
