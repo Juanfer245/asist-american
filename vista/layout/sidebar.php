@@ -25,7 +25,13 @@
                     </a>
                 </li>
 
-                
+                <li class="red">
+                    <a href="cargo.php" class="activo">
+                        <img src="../public/img-inicio/TEAM.png" class="img-inicio" alt="">
+                        <!-- <i class="fas fa-house-user"></i> -->
+                        <span class="lbl">Cargos</span>
+                    </a>
+                </li>
 
                 <li class="red">
                     <a href="acerca.php" class="">

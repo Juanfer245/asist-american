@@ -24,6 +24,9 @@ header('location:login/login.php');
 
     <?php
     include "../modelo/conexion.php";
+    include "../controlador/controlador_modificar_empleado.php";
+    include "../controlador/controlador_eliminar_empleado.php";
+
     $sql=$conexion->query(" SELECT
     empleado.*, 
     empleado.id_empleado, 
@@ -43,7 +46,7 @@ header('location:login/login.php');
 
     ?>
 
-    <a href="registro_usuario.php" class="btn btn-primary btn-rounded mb-2"><i class="fa-solid fa-plus"></i>&nbsp;Registrar</a>
+    <a href="registro_empleado.php" class="btn btn-primary btn-rounded mb-2"><i class="fa-solid fa-plus"></i>&nbsp;Registrar</a>
     <table class="table table-bordered table-hover w-100" id="example">
   <thead>
     <tr>
@@ -64,7 +67,7 @@ header('location:login/login.php');
       <td><?=$datos->nom_cargo?></td>
       <td>
         <a href="" data-toggle="modal" data-target="#exampleModal<?= $datos->id_empleado ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-       <a href="usuario.php?id=<?=$datos->id_empleado?>"onclick="advertencia(event)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+       <a href="empleado.php?id=<?=$datos->id_empleado?>"onclick="advertencia(event)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
     </td>
     </tr>
 
@@ -73,7 +76,7 @@ header('location:login/login.php');
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-between">
-        <h5 class="modal-title w-100" id="exampleModalLabel">Modificar Usuario</h5>
+        <h5 class="modal-title w-100" id="exampleModalLabel">Modificar Empleado</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -81,20 +84,30 @@ header('location:login/login.php');
       <div class="modal-body">
       <form action="" method="POST">
       <div hidden class="fl-flex-label mb-4 px-2 col-12">
-        <input type="text" placeholder="Id" class="input input__text" name="textid" value="<?= $datos->id_empleado ?>">
+        <input type="text" placeholder="Id" class="input input__text" name="txtid" value="<?= $datos->id_empleado ?>">
       </div>
       <div class="fl-flex-label mb-4 px-2 col-12">
-        <input type="text" placeholder="Ingrese su Nombre" class="input input__text" name="textnombre" value="<?= $datos->nombre ?>">
+        <input type="text" placeholder="Ingrese su Dni" class="input input__text" name="txtdni" value="<?= $datos->dni ?>">
       </div>
       <div class="fl-flex-label mb-4 px-2 col-12">
-        <input type="text" placeholder="Ingrese su Apellido" class="input input__text" name="textapellido" value="<?= $datos->apellido ?>">
+        <input type="text" placeholder="Ingrese su Nombre" class="input input__text" name="txtnombre" value="<?= $datos->nombre ?>">
       </div>
       <div class="fl-flex-label mb-4 px-2 col-12">
-        <input type="text" placeholder="Ingrese el usuario" class="input input__text" name="textusuario" value="<?= $datos->usuario ?>">
+        <input type="text" placeholder="Ingrese su Apellido" class="input input__text" name="txtapellido" value="<?= $datos->apellido ?>">
+      </div>
+      <div class="fl-flex-label mb-4 px-2 col-12">
+        <select name="txtcargo" class="input input__selecy">
+          <?php
+          $sql2=$conexion->query(" SELECT * FROM cargo ");
+          while ($datos2=$sql2->fetch_object()) { ?>
+            <option <?= $datos->cargo==$datos2->id_cargo ? 'selected' : '' ?> value="<?= $datos2->id_cargo ?>"><?= $datos2->nom_cargo ?></option>
+          <?php }
+          ?>
+        </select>
       </div>
 
       <div class="text-right p-2">
-        <a href="usuario.php" class="btn btn-secondary btn-rounded">Atras</a>
+        <a href="empleado.php" class="btn btn-secondary btn-rounded">Atras</a>
         <button type="submit" value="ok" name="btnmodificar" class="btn btn-primary btn-rounded">Modificar</button>
       </div>
     </form>
