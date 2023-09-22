@@ -24,7 +24,8 @@ header('location:login/login.php');
 
     <?php
     include "../modelo/conexion.php";
-    
+    include "../controlador/controlador_modificar_cargo.php";
+    include "../controlador/controlador_eliminar_cargo.php";
 
     $sql=$conexion->query(" Select * from cargo ");
 
@@ -47,7 +48,7 @@ header('location:login/login.php');
       <td><?=$datos->nom_cargo?></td>
       <td>
         <a href="" data-toggle="modal" data-target="#exampleModal<?= $datos->id_cargo ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-       <a href="usuario.php?id=<?=$datos->id_cargo?>"onclick="advertencia(event)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+       <a href="cargo.php?id=<?=$datos->id_cargo?>"onclick="advertencia(event)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
     </td>
     </tr>
 
@@ -56,7 +57,7 @@ header('location:login/login.php');
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-between">
-        <h5 class="modal-title w-100" id="exampleModalLabel">Modificar Usuario</h5>
+        <h5 class="modal-title w-100" id="exampleModalLabel">Modificar Cargo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -67,11 +68,11 @@ header('location:login/login.php');
         <input type="text" placeholder="Id" class="input input__text" name="textid" value="<?= $datos->id_cargo ?>">
       </div>
       <div class="fl-flex-label mb-4 px-2 col-12">
-        <input type="text" placeholder="Ingrese su Nombre" class="input input__text" name="textnombre" value="<?= $datos->nombre ?>">
+        <input type="text" placeholder="Ingrese su Nombre" class="input input__text" name="textnombre" value="<?= $datos->nom_cargo ?>">
       </div>
 
       <div class="text-right p-2">
-        <a href="usuario.php" class="btn btn-secondary btn-rounded">Atras</a>
+        <a href="cargo.php" class="btn btn-secondary btn-rounded">Atras</a>
         <button type="submit" value="ok" name="btnmodificar" class="btn btn-primary btn-rounded">Modificar</button>
       </div>
     </form>
