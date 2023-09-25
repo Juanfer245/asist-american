@@ -42,8 +42,8 @@
             <input type="text" placeholder="Cedula del alumno" name="textdni" id="txtdni">
             <div class="botones">
 
-                <button class="Entrada" type="submit" name="btnentrada" value="ok">Entrada</button>
-                <button class="Salida" type="submit" name="btnsalida" value="ok">Salida</button>
+                <button id="salida" class="Salida" type="submit" name="btnsalida" value="ok">Salida</button>
+                <button id="entrada" class="Entrada" type="submit" name="btnentrada" value="ok">Entrada</button>
             </div>
         </form>
     </div>
@@ -60,6 +60,18 @@
     dni.addEventListener("input",function(){
         if (this.value.length > 10) {
             this.value=this.value.slice(0,10);
+        }
+    })
+
+
+    //eventos para la entrada y salida
+    document.addEventListener("keyup",function(event){
+        if (event.code=="ArrowLeft"){
+            document.getElementById("salida").click()
+        } else {
+            if (event.code=="ArrowRight") {
+                document.getElementById("entrada").click()
+            }
         }
     })
 </script>
