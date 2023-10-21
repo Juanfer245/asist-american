@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro de asistencia</title>
     <link rel="stylesheet" href="public/estilos/estilos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,19 +25,21 @@
 
 </head>
 
-<body>
+<body style="background-image: url('vista/login/img/mesa1.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+    <!-- Resto de tu contenido -->
     <?php
     date_default_timezone_set("America/Guayaquil");
     ?>
-    <h1>Registro de asistencia</h1>
-    <h2 id="fecha"><?= date("d/m/Y, h:i:s")?></h2>
+    <h2 id="fecha"><?= date("d/m/Y, H:i:s")?></h2>
     <?php
     include "modelo/conexion.php";
     include "controlador/controlador_registrar_asistencia.php";
     ?>
     <div class="container">
         <a class="acceso" href="vista/login/login.php">Ingresar al Sistema</a>
-        <p class="dni">Ingrese su Cedula</p>
+        <p class="dni1">Ingrese su Cedula</p>
+        <p class="dni">xxxxxxxxx-x = Profesor</p>
+        <p class="dni">xxxxxxxxxx = Estudiante</p>
         <form action="" method="post">
             <input type="text" placeholder="Cedula del alumno" name="textdni" id="txtdni">
             <div class="botones">
@@ -45,6 +47,7 @@
                 <button id="salida" class="Salida" type="submit" name="btnsalida" value="ok">Salida</button>
                 <button id="entrada" class="Entrada" type="submit" name="btnentrada" value="ok">Entrada</button>
             </div>
+            
         </form>
     </div>
 
@@ -58,8 +61,8 @@
 <script>
     let dni=document.getElementById("txtdni");
     dni.addEventListener("input",function(){
-        if (this.value.length > 10) {
-            this.value=this.value.slice(0,10);
+        if (this.value.length > 11) {
+            this.value=this.value.slice(0,11);
         }
     })
 

@@ -94,7 +94,7 @@ FROM
 empleado
 INNER JOIN cargo ON empleado.cargo = cargo.id_cargo
 WHERE
-        cargo.nom_cargo = 'profesor'
+        cargo.nom_cargo = 'estudiante'
  ");
 
 while ($datos_reporte = $consulta_reporte_empleado->fetch_object()) {

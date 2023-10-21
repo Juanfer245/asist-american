@@ -20,10 +20,11 @@ body{
 .container{
     width: 100vw;
     height: 100vh;
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(2, 1fr);
     grid-gap :7rem;
     padding: 0 2rem;
+	justify-content: center;
 }
 
 .img{
@@ -53,7 +54,7 @@ form{
 
 .login-content h2{
 	margin: 15px 0;
-	color: #333;
+	color: #ffffff;
 	text-transform: uppercase;
 	font-size: 2.9rem;
 }
@@ -92,7 +93,7 @@ form{
 	left: 10px;
 	top: 50%;
 	transform: translateY(-50%);
-	color: #999;
+	color: #ffffff;
 	font-size: 18px;
 	transition: .3s;
 }
@@ -139,7 +140,7 @@ form{
 	background: none;
 	padding: 0.5rem 0.7rem;
 	font-size: 1.2rem;
-	color: #555;
+	color: #ffffff;
 	font-family: 'poppins', sans-serif;
 }
 .input-div > div > select{

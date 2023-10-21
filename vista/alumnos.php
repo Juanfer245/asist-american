@@ -7,7 +7,7 @@ header('location:login/login.php');
 ?>
 
 <style>
-    ul li:nth-child(3) .activo{
+    ul li:nth-child(4) .activo{
         background: rgb(11, 150, 214) !important;
     }
 </style>
@@ -41,14 +41,14 @@ FROM
 INNER JOIN
     cargo ON empleado.cargo = cargo.id_cargo
 WHERE
-    cargo.nom_cargo = 'profesor'
+    cargo.nom_cargo = 'estudiante'
 ");
 
     ?>
 
-    <a href="registro_empleado.php" class="btn btn-primary btn-rounded mb-2"><i class="fa-solid fa-plus"></i>&nbsp;Registrar</a>
+    <a href="registro_alumno.php" class="btn btn-primary btn-rounded mb-2"><i class="fa-solid fa-plus"></i>&nbsp;Registrar</a>
     <div class="text-right mb-2">
-    <a href="fpdf/ReporteEmpleado.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i>Generar Reportes</a>
+    <a href="fpdf/ReporteEstudiante.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i>Generar Reportes</a>
   </div>
     <table class="table table-bordered table-hover w-100" id="example">
   <thead>

@@ -12,7 +12,7 @@ class PDF extends FPDF
 
       $consulta_info = $conexion->query(" select *from empresa ");//traemos datos de la empresa desde BD
       $dato_info = $consulta_info->fetch_object();
-      $this->Image('logo.png', 270, 5, 20); //logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
+      $this->Image('../../vista/login/img/pag2.png', 230, 9, 55); //logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
       $this->SetFont('Arial', 'B', 19); //tipo fuente, negrita(B-I-U-BIU), tamañoTexto
       $this->Cell(95); // Movernos a la derecha
       $this->SetTextColor(0, 0, 0); //color
@@ -22,19 +22,19 @@ class PDF extends FPDF
       $this->SetTextColor(103); //color
 
       /* UBICACION */
-      $this->Cell(180);  // mover a la derecha
+      $this->Cell(5);  // mover a la derecha
       $this->SetFont('Arial', 'B', 10);
       $this->Cell(96, 10, utf8_decode("Ubicación : " . $dato_info->ubicacion), 0, 0, '', 0);
       $this->Ln(5);
 
       /* TELEFONO */
-      $this->Cell(180);  // mover a la derecha
+      $this->Cell(5);  // mover a la derecha
       $this->SetFont('Arial', 'B', 10);
       $this->Cell(59, 10, utf8_decode("Teléfono : " . $dato_info->telefono), 0, 0, '', 0);
       $this->Ln(5);
 
       /* COREEO */
-      $this->Cell(180);  // mover a la derecha
+      $this->Cell(5);  // mover a la derecha
       $this->SetFont('Arial', 'B', 10);
       $this->Cell(85, 10, utf8_decode("Correo : " . $dato_info->ruc), 0, 0, '', 0);
       $this->Ln(10);
@@ -87,6 +87,8 @@ $i = 0;
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetDrawColor(163, 163, 163); //colorBorde
 
+$cargo_filtrado = "estudiante"; // Define el cargo que deseas filtrar
+
 $consulta_reporte_asistencia = $conexion->query(" SELECT
 asistencia.entrada,
 asistencia.salida,
@@ -98,6 +100,8 @@ FROM
 asistencia
 INNER JOIN empleado ON asistencia.id_empleado = empleado.id_empleado
 INNER JOIN cargo ON empleado.cargo = cargo.id_cargo
+WHERE cargo.nom_cargo = '$cargo_filtrado'
+ORDER BY asistencia.entrada ASC
 
 ");
 
@@ -108,8 +112,8 @@ $pdf->Cell(15, 10, utf8_decode($i), 1, 0, 'C', 0);
 $pdf->Cell(80, 10, utf8_decode($datos_reporte->nombre . " " .$datos_reporte->apellido), 1, 0, 'C', 0);
 $pdf->Cell(30, 10, utf8_decode($datos_reporte->dni), 1, 0, 'C', 0);
 $pdf->Cell(50, 10, utf8_decode($datos_reporte->nom_cargo), 1, 0, 'C', 0);
-$pdf->Cell(50, 10, utf8_decode($datos_reporte->entrada), 1, 0, 'C', 0);
-$pdf->Cell(50, 10, utf8_decode($datos_reporte->salida), 1, 1, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode(date('d/m/Y H:i:s', strtotime($datos_reporte->entrada))), 1, 0, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode(date('d/m/Y H:i:s', strtotime($datos_reporte->salida))), 1, 1, 'C', 0);
    }
 
 

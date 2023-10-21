@@ -46,7 +46,8 @@ INNER JOIN cargo ON empleado.cargo = cargo.id_cargo
     ?>
 
 <div class="text-right mb-2">
-  <a href="fpdf/ReporteAsistencia.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i>Generar Reportes</a>
+  <a href="fpdf/ReporteAsistencia.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i>Generar Reportes Estudiantes</a>
+  <a href="fpdf/ReporteAsistenciaDocente.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i>Generar Reporte de Docente</a>
 </div>
     <table class="table table-bordered table-hover w-100" id="example">
   <thead>
@@ -54,7 +55,7 @@ INNER JOIN cargo ON empleado.cargo = cargo.id_cargo
       <th scope="col">Id</th>
       <th scope="col">Nombre y Apellido</th>
       <th scope="col">Cedula</th>
-      <th scope="col">Cargo</th>
+      <th scope="col">Rol</th>
       <th scope="col">Entrada</th>
       <th scope="col">Salida</th>
       <th></th>

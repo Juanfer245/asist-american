@@ -44,7 +44,7 @@ class PDF extends FPDF
       $this->SetTextColor(88, 21, 21);
       $this->Cell(100); // mover a la derecha
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(100, 10, utf8_decode("REPORTE DE EMPLEADOS "), 0, 1, 'C', 0);
+      $this->Cell(100, 10, utf8_decode("REPORTE DE ASISTENCIAS "), 0, 1, 'C', 0);
       $this->Ln(7);
 
       /* CAMPOS DE LA TABLA */
@@ -54,9 +54,11 @@ class PDF extends FPDF
       $this->SetDrawColor(163, 163, 163); //colorBorde
       $this->SetFont('Arial', 'B', 11);
       $this->Cell(15, 10, utf8_decode('N°'), 1, 0, 'C', 1);
-      $this->Cell(150, 10, utf8_decode('Empleado'), 1, 0, 'C', 1);
+      $this->Cell(80, 10, utf8_decode('Empleado'), 1, 0, 'C', 1);
       $this->Cell(30, 10, utf8_decode('Dni'), 1, 0, 'C', 1);
-      $this->Cell(80, 10, utf8_decode('Cargo'), 1, 1, 'C', 1);
+      $this->Cell(50, 10, utf8_decode('Cargo'), 1, 0, 'C', 1);
+      $this->Cell(50, 10, utf8_decode('Entrada'), 1, 0, 'C', 1);
+      $this->Cell(50, 10, utf8_decode('Salida'), 1, 1, 'C', 1);
    }
 
    // Pie de página
@@ -85,27 +87,35 @@ $i = 0;
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetDrawColor(163, 163, 163); //colorBorde
 
-$consulta_reporte_empleado = $conexion->query(" SELECT
+$cargo_filtrado = "profesor"; // Define el cargo que deseas filtrar
+
+$consulta_reporte_asistencia = $conexion->query(" SELECT
+asistencia.entrada,
+asistencia.salida,
 empleado.nombre,
 empleado.apellido,
 empleado.dni,
 cargo.nom_cargo
 FROM
-empleado
+asistencia
+INNER JOIN empleado ON asistencia.id_empleado = empleado.id_empleado
 INNER JOIN cargo ON empleado.cargo = cargo.id_cargo
-WHERE
-        cargo.nom_cargo = 'profesor'
- ");
+WHERE cargo.nom_cargo = '$cargo_filtrado'
+ORDER BY asistencia.entrada ASC
 
-while ($datos_reporte = $consulta_reporte_empleado->fetch_object()) {
+");
+
+while ($datos_reporte = $consulta_reporte_asistencia->fetch_object()) {
    $i = $i + 1;
 /* TABLA */
 $pdf->Cell(15, 10, utf8_decode($i), 1, 0, 'C', 0);
-$pdf->Cell(150, 10, utf8_decode($datos_reporte->nombre . " " .$datos_reporte->apellido), 1, 0, 'C', 0);
+$pdf->Cell(80, 10, utf8_decode($datos_reporte->nombre . " " .$datos_reporte->apellido), 1, 0, 'C', 0);
 $pdf->Cell(30, 10, utf8_decode($datos_reporte->dni), 1, 0, 'C', 0);
-$pdf->Cell(80, 10, utf8_decode($datos_reporte->nom_cargo), 1, 1, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode($datos_reporte->nom_cargo), 1, 0, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode(date('d/m/Y H:i:s', strtotime($datos_reporte->entrada))), 1, 0, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode(date('d/m/Y H:i:s', strtotime($datos_reporte->salida))), 1, 1, 'C', 0);
    }
 
 
 
-$pdf->Output('ReporteEmpleado.pdf', 'I');//nombreDescarga, Visor(I->visualizar - D->descargar)
+$pdf->Output('ReporteAsistencia.pdf', 'I');//nombreDescarga, Visor(I->visualizar - D->descargar)

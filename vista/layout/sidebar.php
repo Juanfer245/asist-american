@@ -13,7 +13,7 @@
                     <a href="usuario.php" class="activo">
                         <img src="../public/img-inicio/programar.png" class="img-inicio" alt="">
                         <!-- <i class="fas fa-house-user"></i> -->
-                        <span class="lbl">Usuarios</span>
+                        <span class="lbl">Usuarios Permitidos</span>
                     </a>
                 </li>
 
@@ -21,7 +21,15 @@
                     <a href="empleado.php" class="activo">
                         <img src="../public/img-inicio/TEAM.png" class="img-inicio" alt="">
                         <!-- <i class="fas fa-house-user"></i> -->
-                        <span class="lbl">Empleados</span>
+                        <span class="lbl">Profesores</span>
+                    </a>
+                </li>
+
+                <li class="red">
+                    <a href="alumnos.php" class="activo">
+                        <img src="../public/img-inicio/TEAM.png" class="img-inicio" alt="">
+                        <!-- <i class="fas fa-house-user"></i> -->
+                        <span class="lbl">Alumnos</span>
                     </a>
                 </li>
 

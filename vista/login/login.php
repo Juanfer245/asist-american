@@ -12,17 +12,19 @@
     <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
     <link href="https://tresplazas.com/web/img/big_punto_de_venta.png" rel="shortcut icon">
     <title>Inicio de sesión</title>
+    <style>
+        body{
+            background-image: url(img/portada\ inicio_Mesa\ de\ trabajo\ 1.png);
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
-    <img class="wave" src="img/wave.png">
     <div class="container">
-        <div class="img">
-            <img src="img/bg.svg">
-        </div>
         <div class="login-content">
             <form method="POST" action="">
-                <img src="img/avatar.svg">
+                <img src="img/icono de entrada_Mesa de trabajo 1.png">
                 <h2 class="title">BIENVENIDO</h2>
                 <?php
                 include "../../modelo/conexion.php";
@@ -59,7 +61,7 @@
 
 
                 <div class="text-center">
-                    <a class="font-italic isai5" href="">Olvidé mi contraseña</a>
+                    <a class="font-italic isai5" href="../../index.php" style="color: white;">Registrar Asistencia</a>
                 </div>
                 <input name="btningresar" class="btn" title="click para ingresar" type="submit"
                     value="INICIAR SESION">
